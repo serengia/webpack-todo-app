@@ -10,16 +10,16 @@ class Crud {
   getTodoItemMarkup(todo) {
     return `<li class="item-wrapper todo-item"  data-complete="${
       todo.complete
-    }" data-id="${todo.index}">
-    <input type="checkbox" data-id="${todo.index}" ${
+    }" data-id="${todo.id}" data-index="${todo.index}">
+    <input type="checkbox" data-id="${todo.id}" ${
       todo.complete ? "checked" : null
     } class="todo-checkbox">
     <input type="text" value="${todo.description}" data-id="${
-      todo.index
+      todo.id
     }" class="todo-description"/>
    
     <span class="icon-box todo-action-icons">
-     <i class="item-icon fa-solid fa-trash-can" data-id="${todo.index}"></i>
+     <i class="item-icon fa-solid fa-trash-can" data-id="${todo.id}"></i>
      <i class="item-icon fa-solid fa-xmark"></i>
      <i class="item-icon fa-solid fa-ellipsis-vertical"></i>
    
@@ -27,16 +27,21 @@ class Crud {
    </li>`;
   }
 
-  updateUI(todoArr = this.getToDos()) {
+  updateUI() {
     let todoMarkup = "";
-    const todos = todoArr;
+    const todos = this.getToDos();
+
     const sortedTodos = todos.sort((a, b) => a.index - b.index);
 
     sortedTodos.forEach((todo) => {
       todoMarkup += this.getTodoItemMarkup(todo);
     });
 
-    this.todoListContainer.insertAdjacentHTML("afterbegin", todoMarkup);
+    this.todoListContainer.innerHTML = todoMarkup;
+
+    const nodes = document.querySelectorAll(".todo-item");
+
+    return [...nodes];
   }
 
   //   Add todo
@@ -47,6 +52,7 @@ class Crud {
       description,
       index: todoArr.length,
       complete,
+      id: Date.now().toString(),
     };
 
     todoArr.push({ ...todoObj });
@@ -58,43 +64,47 @@ class Crud {
     this.todoListContainer.insertAdjacentHTML("beforeend", todoMarkup);
   }
 
-  removeItem(index) {
+  removeItem(id) {
     const todos = this.getToDos();
-    const updatedTodos = todos.filter((todo) => todo.index !== index);
+    const updatedTodos = todos.filter((todo) => todo.id !== id);
 
-    if (updatedTodos.length > 0) {
-      updatedTodos.forEach((todo, i) => {
-        todo.index = i;
-      });
-    }
+    updatedTodos.forEach((obj, i) => {
+      obj.index = i;
+    });
 
     // Save updated list to local
-    localStorage.setItem("todos", JSON.stringify(updatedTodos));
+    localStorage.setItem("todos", JSON.stringify([...updatedTodos]));
   }
 
-  updateTodo(index, text) {
+  updateTodo(id, text) {
     const todos = this.getToDos();
-    const itemToUpdate = todos.find((todoObj) => todoObj.index === index);
+    const itemToUpdate = todos.find((todoObj) => todoObj.id === id);
 
     const initialText = itemToUpdate?.description;
     if (text === initialText) return;
 
     itemToUpdate.description = text;
 
-    todos.splice(index, 1, itemToUpdate);
+    const itemToUpdateIndex = todos.findIndex((todo) => todo.id === id);
+    if (itemToUpdateIndex === -1) return;
+
+    todos[itemToUpdateIndex] = itemToUpdate;
 
     // Save changes to local storage
-    localStorage.setItem("todos", JSON.stringify(todos));
+    localStorage.setItem("todos", JSON.stringify([...todos]));
   }
 
-  updateTodoStatus(index, status) {
+  updateTodoStatus(id, status) {
     const todos = this.getToDos();
-    const itemToUpdate = todos.find((todoObj) => todoObj.index === index);
+    const itemToUpdate = [...todos].find((todoObj) => todoObj.id === id);
     itemToUpdate.complete = status;
 
-    todos.splice(index, 1, itemToUpdate);
+    const itemToUpdateIndex = todos.findIndex((todo) => todo.id === id);
+    if (itemToUpdateIndex === -1) return;
 
-    localStorage.setItem("todos", JSON.stringify(todos));
+    todos[itemToUpdateIndex] = itemToUpdate;
+
+    localStorage.setItem("todos", JSON.stringify([...todos]));
   }
 }
 

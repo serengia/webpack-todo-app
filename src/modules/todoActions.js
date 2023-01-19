@@ -44,9 +44,9 @@ const todoActions = () => {
     if (!e.target.classList.contains("todo-description")) return;
     if (inputValue?.trim().length === 0) return;
 
-    const index = +e.target.dataset.id;
+    const { id } = e.target.dataset;
     const todoClass = new Crud();
-    todoClass.updateTodo(index, inputValue);
+    todoClass.updateTodo(id, inputValue);
   });
 
   // Todo item actions from Icons
@@ -79,10 +79,10 @@ const todoActions = () => {
 
     if (clickedIcon.classList.contains("fa-trash-can")) {
       // DELETING ITEM
-      const index = +clickedIcon.dataset.id;
+      const { id } = clickedIcon.dataset;
 
       const todoClass = new Crud();
-      todoClass.removeItem(index);
+      todoClass.removeItem(id);
 
       // Remove item from ui
       clickedIcon.closest(".todo-item")?.remove();
@@ -96,26 +96,27 @@ const todoActions = () => {
     if (!clickedCheckbox) return;
 
     const todoClass = new Crud();
-    const checkedItemIndex = +clickedCheckbox.dataset.id;
+    const checkedItemId = clickedCheckbox.dataset.id;
     if (clickedCheckbox.checked) {
       clickedCheckbox.closest(".todo-item").dataset.complete = true;
-      todoClass.updateTodoStatus(checkedItemIndex, true);
+      todoClass.updateTodoStatus(checkedItemId, true);
     } else {
       clickedCheckbox.closest(".todo-item").dataset.complete = false;
-      todoClass.updateTodoStatus(checkedItemIndex, false);
+      todoClass.updateTodoStatus(checkedItemId, false);
     }
   });
 
   // Clear all selected items
   clearAllBtn.addEventListener("click", () => {
     // Remove checked items from ui
-    const checkedItems = [...document.querySelectorAll(".todo-item")];
-    const todoClass = new Crud();
-    if (checkedItems.length > 0) {
-      checkedItems.forEach((node) => {
+    const listItems = new Crud().updateUI();
+    if (listItems.length > 0) {
+      listItems.forEach((node) => {
         if (node.dataset.complete.trim() === "true") {
+          const todoClass = new Crud();
           node.remove();
-          todoClass.removeItem(+node.dataset.id);
+          const { id } = node.dataset;
+          todoClass.removeItem(id);
         }
       });
     }
