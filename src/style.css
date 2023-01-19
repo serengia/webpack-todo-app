@@ -124,3 +124,9 @@ main {
   text-decoration: line-through;
   color: rgb(87, 87, 87);
 }
+
+.todo-action-icons {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}

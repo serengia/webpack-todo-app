@@ -12,6 +12,7 @@
   - [Getting Started ](#getting-started-)
     - [Install ](#install-)
   - [Authors ](#authors-)
+  - [🔭 Future Features ](#-future-features-)
   - [🤝 Contributing ](#-contributing-)
   - [Show your support ](#show-your-support-)
   - [Acknowledgments ](#acknowledgments-)
@@ -49,7 +50,7 @@
 
 > You can see a live demo via the link bellow.
 
-- [Live Demo Link](https://serengia.github.io/todo-list-with-webpack)
+- [Live Demo Link](https://serengia.github.io/webpack-todo-app/dist)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -72,6 +73,14 @@ npm install
 - GitHub: [@githubhandle](https://github.com/serengia)
 - Twitter: [@twitterhandle](https://twitter.com/JamesSerengia)
 - LinkedIn: [LinkedIn](https://linkedin.com/in/james-serengia)
+
+<!-- FUTURE FEATURES -->
+
+## 🔭 Future Features <a name="future-features"></a>
+
+- [ ] **Reordering a selected item (as drag-and-drop)**
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 🤝 Contributing <a name="contributing"></a>
 
