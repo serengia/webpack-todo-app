@@ -1,7 +1,8 @@
 import "./style.css";
-import todoArr from "./modules/todos.js";
-import populateToDo from "./modules/utils.js";
+import todoActions from "./modules/todoActions.js";
+import Crud from "./modules/crud.js";
 
-const todoListContainer = document.querySelector(".todo-list");
+todoActions();
 
-populateToDo(todoArr, todoListContainer);
+const todoClass = new Crud();
+todoClass.updateUI();

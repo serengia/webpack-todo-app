@@ -23,7 +23,9 @@
     ],
     "arrow-body-style": "off",
     "quotes": "off",
-    "linebreak-style": "off"
+    "linebreak-style": "off",
+    "class-methods-use-this": "off",
+    "indent": "off"
   },
   "ignorePatterns": ["dist/", "build/"]
 }
