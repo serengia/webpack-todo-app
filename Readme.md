@@ -4,23 +4,23 @@
 
 # 📗 Table of Contents
 
-- [📗 Table of Contents](#-table-of-contents)
-- [Todo list App -- with Webpack ](#todo-list-app----with-webpack-)
-  - [🛠 Built With ](#-built-with-)
-    - [Key Features ](#key-features-)
-  - [🚀 Live Demo ](#-live-demo-)
-  - [Getting Started ](#getting-started-)
-    - [Install ](#install-)
-  - [Authors ](#authors-)
-  - [🔭 Future Features ](#-future-features-)
-  - [🤝 Contributing ](#-contributing-)
-  - [Show your support ](#show-your-support-)
-  - [Acknowledgments ](#acknowledgments-)
-  - [📝 License ](#-license-)
+- [📗 Table of Contents](#table-of-contents)
+- [Todo list App -- with Webpack ](#todo-list-app--with-webpack)
+  - [🛠 Built With ](#built-with)
+    - [Key Features ](#key-features)
+  - [🚀 Live Demo ](#live-demo)
+  - [Getting Started ](#getting-started)
+    - [Install ](#install)
+  - [Author ](#author)
+  - [🔭 Future Features ](#future-features)
+  - [🤝 Contributing ](#contributing)
+  - [Show your support ](#show-your-support)
+  - [Acknowledgments ](#acknowledgments)
+  - [📝 License ](#license)
 
 <!-- PROJECT DESCRIPTION -->
 
-# Todo list App -- with Webpack <a name="about-project"></a>
+# Todo list App -- with Webpack <a name="todo-list-app--with-webpack"></a>
 
 > Todo List App project build using webpack.
 
@@ -66,7 +66,19 @@ To get a local copy up and running follow these simple example steps.
 npm install
 ```
 
-## Authors <a name="authors"></a>
+To build a webpack bundle file,run
+
+```js
+npm run build
+```
+
+If you want to build and run the local server, run
+
+```js
+npm start
+```
+
+## Author <a name="author"></a>
 
 👤 **James Serengia**
 
